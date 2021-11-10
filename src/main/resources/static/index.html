@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>go-generator</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="fixed-top">
+        <div class="alert alert-success text-center alert-dismissible {style} LoopItem" role="alert" id="alert-999" staticjson="[]" loadtype="Init" style="margin-bottom: 5px;display:none;"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><span>{msg}<br></span></div>
+    </div>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form action="go/genfile" method="post">
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col"><label class="form-label">数据库连接</label><label class="form-label" style="color: var(--bs-red);">*</label><input class="form-control" type="text" name="url" required=""></div>
+                            <div class="col"><label class="form-label">账号</label><label class="form-label" style="color: var(--bs-red);">*</label><input class="form-control" type="text" required="" name="userName"></div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col"><label class="form-label">连接密码</label><label class="form-label" style="color: var(--bs-red);">*</label><input class="form-control" type="text" name="password" required=""></div>
+                            <div class="col"></div>
+                        </div>
+<!--                        <div class="row">-->
+<!--                            <div class="col"><label class="form-label">数据库表<sub>不填则扫描全库的表</sub></label><input class="form-control" type="text" name="tables"></div>-->
+<!--                        </div>-->
+                        <button class="btn btn-primary" type="submit" style="margin-top: 10px;">生成</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
