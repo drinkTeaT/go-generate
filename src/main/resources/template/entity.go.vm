@@ -1,0 +1,15 @@
+package entity
+
+const (
+${entity}TableName = "${table.name}"
+)
+
+type ${entity}Tab struct{
+#foreach($field in ${table.fields})
+    ${field.propertyName.substring(0,1).toUpperCase()}${field.propertyName.substring(1)}      ${field.type} `gorm:"${field.myMap.columnInfo}" json:"${field.annotationColumnName}"`
+#end
+}
+
+func (tab *${entity}Tab) TableName() string{
+return ${entity}TableName
+}

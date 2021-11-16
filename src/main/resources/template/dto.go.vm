@@ -1,0 +1,7 @@
+package dto
+
+type ${entity}Dto struct {
+#foreach($field in ${table.fields})
+    ${field.propertyName.substring(0,1).toUpperCase()}${field.propertyName.substring(1)}      ${field.type}  `json:"${field.annotationColumnName}"`
+#end
+}

@@ -3,6 +3,7 @@ package club.tacbin.ggen.util;
 import club.tacbin.ggen.dto.GoCodeGenDTO;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.builder.GeneratorBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
@@ -21,6 +22,7 @@ public class EntityGenUtil {
     public static final String password = "tacbin@123";
 
     public static void doGen(GoCodeGenDTO goCodeGenDTO) {
+        String[] tables = goCodeGenDTO.getTables().split(",");
         String projectPath = "./";
         DataSourceConfig dataSourceConfig = new DataSourceConfig.Builder(goCodeGenDTO.getUrl(), goCodeGenDTO.getUserName(), goCodeGenDTO.getPassword())
                 .build();
@@ -39,13 +41,13 @@ public class EntityGenUtil {
                         .controller("")
                         .parent("")
                         .build())
-                .strategy(new StrategyConfig.Builder()
+                .strategy(new StrategyConfig.Builder().addInclude(tables)
                         .enableSkipView()
                         .entityBuilder()
                         .nameConvert(new MyNameConverter())
                         .convertFileName(new MyFileNameConverter())
                         .enableLombok()
-                        .build());
+                        .build()).template(GeneratorBuilder.templateConfigBuilder().entity("template/entity.go.vm").mapper("template/dto.go.vm").build());;
         autoGenerator.execute();
     }
 
@@ -69,7 +71,7 @@ public class EntityGenUtil {
 
         @Override
         public String convert(String entityName) {
-            return entityName + "DTO";
+            return entityName;
         }
     }
 }
